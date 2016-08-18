@@ -14,11 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.keycloak.admin.client.resource;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
-import org.keycloak.representations.idm.GroupRepresentation;
+import org.keycloak.representations.idm.authorization.ResourceRepresentation;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -31,26 +30,20 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
+ * @author <a href="mailto:psilva@redhat.com">Pedro Igor</a>
  */
-public interface GroupsResource {
+public interface ResourcesResource {
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    Response create(ResourceRepresentation resource);
+
+    @Path("{id}")
+    ResourceResource resource(@PathParam("id") String id);
+
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    List<GroupRepresentation> groups();
-
-    /**
-     * create or add a top level realm groupSet or create child.  This will update the group and set the parent if it exists.  Create it and set the parent
-     * if the group doesn't exist.
-     *
-     * @param rep
-     */
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    Response add(GroupRepresentation rep);
-
-    @Path("{id}")
-    GroupResource group(@PathParam("id") String id);
-
+    List<ResourceRepresentation> resources();
 }

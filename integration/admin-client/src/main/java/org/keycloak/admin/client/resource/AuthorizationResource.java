@@ -14,43 +14,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.keycloak.admin.client.resource;
 
-import org.jboss.resteasy.annotations.cache.NoCache;
-import org.keycloak.representations.idm.GroupRepresentation;
+import org.keycloak.representations.idm.authorization.ResourceServerRepresentation;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
+ * @author <a href="mailto:psilva@redhat.com">Pedro Igor</a>
  */
-public interface GroupsResource {
-    @GET
-    @NoCache
-    @Produces(MediaType.APPLICATION_JSON)
-    List<GroupRepresentation> groups();
+public interface AuthorizationResource {
 
-    /**
-     * create or add a top level realm groupSet or create child.  This will update the group and set the parent if it exists.  Create it and set the parent
-     * if the group doesn't exist.
-     *
-     * @param rep
-     */
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    void update(ResourceServerRepresentation server);
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    ResourceServerRepresentation getSettings();
+
+    @Path("/import")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    Response add(GroupRepresentation rep);
+    void importSettings(ResourceServerRepresentation server);
 
-    @Path("{id}")
-    GroupResource group(@PathParam("id") String id);
+    @Path("/settings")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    ResourceServerRepresentation exportSettings();
 
+    @Path("/resource")
+    ResourcesResource resources();
+
+    @Path("/scope")
+    ResourceScopesResource scopes();
+
+    @Path("/policy")
+    PoliciesResource policies();
 }
