@@ -21,25 +21,21 @@ import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PUT;
-import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.keycloak.representations.idm.OrganizationRepresentation;
+import org.keycloak.representations.idm.UserRepresentation;
 
-public interface OrganizationResource {
+public interface OrganizationMemberResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    OrganizationRepresentation toRepresentation();
+    UserRepresentation toRepresentation();
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    Response update(OrganizationRepresentation organization);
+    Response update(UserRepresentation organization);
 
     @DELETE
     Response delete();
-
-    @Path("members")
-    OrganizationMembersResource members();
 }
