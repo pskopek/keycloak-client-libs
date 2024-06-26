@@ -68,6 +68,9 @@
 
         <!-- Maven Plugins -->
         <maven.version>3.9.8</maven.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
         <maven.plugins.version>3.11.0</maven.plugins.version>
         <replacer.plugin.version>1.4.1</replacer.plugin.version>
         <jmeter.plugin.version>1.9.0</jmeter.plugin.version>

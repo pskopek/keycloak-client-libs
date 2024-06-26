@@ -18,13 +18,8 @@
     <description>KeyCloak AuthZ: Client API</description>
 
     <properties>
-        <keycloak.osgi.export>
-            org.keycloak.authorization.client.*
-        </keycloak.osgi.export>
-        <keycloak.osgi.import>
-            org.keycloak.*;version="${project.version}",
-            *;resolution:=optional
-        </keycloak.osgi.import>
+        <!-- We still need to support EAP 8, set the Java version to 11. -->
+        <maven.compiler.release>11</maven.compiler.release>
     </properties>
 
     <dependencies>
