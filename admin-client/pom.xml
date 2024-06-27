@@ -85,6 +85,17 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>org.keycloak</groupId>
+                                    <artifactId>keycloak-admin-client-tests</artifactId>
+                                    <version>${keycloak.version}</version>
+                                    <type>jar</type>
+                                    <classifier>sources</classifier>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/unpacked</outputDirectory>
+                                    <includes>**/*</includes>
+                                    <excludes>META-INF/**/*</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.keycloak</groupId>
                                     <artifactId>keycloak-core</artifactId>
                                     <version>${keycloak.version}</version>
                                     <type>jar</type>
