@@ -82,6 +82,18 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>org.keycloak</groupId>
+                                    <!-- TODO: artifactId needs to be different than the one copied over from upstream Keycloak -->
+                                    <artifactId>keycloak-authz-client</artifactId>
+                                    <version>${keycloak.version}</version>
+                                    <type>jar</type>
+                                    <classifier>sources</classifier>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/unpacked</outputDirectory>
+                                    <includes>**/*</includes>
+                                    <excludes>META-INF/**/*</excludes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.keycloak</groupId>
                                     <artifactId>keycloak-core</artifactId>
                                     <version>${keycloak.version}</version>
                                     <type>jar</type>
